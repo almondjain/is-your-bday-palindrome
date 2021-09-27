@@ -72,7 +72,25 @@ function getNextDate(date){
 function getNextPalindromeDate(date){
     //we will check on every next date, so fetch next date
     var nextDate = getNextDate(date);
+    //this counter will give no of days
+    var counter = 0;
 
+    //this loop will continue until we get palindrome
+    while(1){
+        counter++;
+        //get date in string format
+        var dateStr = getDateAsString(nextDate);
+        //check whether date is palindome or not
+        var resultList = checkPalindrome(dateStr);
+
+        for(let i=0;i<resultList.length;i++){
+            if(resultList[i]){
+                return [counter,nextDate];
+            }
+        }
+        //if it is not a palindrome then get next date and update it
+        nextDate = getNextDate(nextDate);
+    }
 }
 
 function reverseDate(date){
