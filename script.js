@@ -2,6 +2,25 @@ var bdayDate = document.querySelector("#bday-input");
 var checkbtn = document.querySelector("#check-btn");
 var result = document.querySelector(".output");
 
+function getDateInAllFormats(date){
+    //we will create all possible formats of date, and send them in list
+    
+    var ddmmyyyy = date.day + date.month + date.year;
+    var mmddyyyy = date.month + date.day + date.year;
+    var yyyymmdd = date.year + date.month + date.day;
+    var ddmmyy = date.day + date.month + date.year.slice(-2);
+    var mmddyy = date.month + date.day + date.year.slice(-2);
+    var yyddmm = date.year.slice(-2) + date.day + date.month;
+
+    return [ddmmyyyy, mmddyyyy, yyyymmdd, ddmmyy, mmddyy, yyddmm];
+
+}
+
+function checkPalindrome(date){
+    //before checking palindrome, we will fetch date in all formats, bcz we need to check on all these
+    var dateFormatList = getDateInAllFormats(date);
+}
+
 //It willl return day,montha and year as a string
 function getDateAsString(date){
     var dateInString = {day:"", month:"", year:""};
@@ -49,6 +68,8 @@ function checkBday(){
 
         //collect day,month and year as single string
         var dateString = getDateAsString(date);
+        //now check Palindrome for the date
+        var list = checkPalindrome(dateString);
 
     }
 
