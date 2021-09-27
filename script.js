@@ -14,8 +14,9 @@ function reverseDate(date){
 }
 
 function isStringPalindrome(date){
+    //it will return true or false, whether string is palindrome or not
     var reversedDate = reverseDate(date);
-
+    return date === reversedDate;
 }
 
 function getDateInAllFormats(date){
