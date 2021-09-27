@@ -2,26 +2,26 @@ var bdayDate = document.querySelector("#bday-input");
 var checkbtn = document.querySelector("#check-btn");
 var result = document.querySelector(".output");
 
-function isLeapYear(year){
+function isLeapYear(year) {
     //check whether year is leap year or not
-    if(year%400 === 0){
+    if (year % 400 === 0) {
         return true;
     }
 
-    if(year%100 === 0){
+    if (year % 100 === 0) {
         return false;
     }
 
-    if(year%4 === 0){
+    if (year % 4 === 0) {
         return true;
     }
 
     return false;
 }
 
-function getNextDate(date){
+function getNextDate(date) {
     //normally, we will add 1 to the date, for the next date
-    var day = date.day +1;
+    var day = date.day + 1;
     //month and year doesnot incement on next day
     var month = date.month;
     var year = date.year;
@@ -34,58 +34,62 @@ function getNextDate(date){
     //what if it is last day of year, so year also increases
 
     //if month is febuary
-    if(month === 2){
+    if (month === 2) {
         //now if it is Leap Year then we have range of 29 days, otherwise 28 days
-        if(isLeapYear(year)){
-            if(day>29){
-                day=1;
-                month=3;
+        if (isLeapYear(year)) {
+            if (day > 29) {
+                day = 1;
+                month = 3;
             }
         }
         //if is is not a leap year, then it will have range of 28 days
-        else{
-            if(day>28){
-                day=1;
-                month=3;
+        else {
+            if (day > 28) {
+                day = 1;
+                month = 3;
             }
         }
-    } 
+    }
     //for rest of the months
-    else{
+    else {
         //due to index value we are doing -1
-        if(day>daysInMonth[month-1]){
-            day=1;
+        if (day > daysInMonth[month - 1]) {
+            day = 1;
             month++;
         }
     }
 
     //now we will go for year, if month>12, them it would be next year
-    if(month>12){
-        month=1;
+    if (month > 12) {
+        month = 1;
         year++;
     }
 
     //now return the next(calculated) date
-    return {day:day, month:month, year:year};
+    return {
+        day: day,
+        month: month,
+        year: year
+    };
 }
 
-function getNextPalindromeDate(date){
+function getNextPalindromeDate(date) {
     //we will check on every next date, so fetch next date
     var nextDate = getNextDate(date);
     //this counter will give no of days
     var counter = 0;
 
     //this loop will continue until we get palindrome
-    while(1){
+    while (1) {
         counter++;
         //get date in string format
         var dateStr = getDateAsString(nextDate);
         //check whether date is palindome or not
         var resultList = checkPalindrome(dateStr);
 
-        for(let i=0;i<resultList.length;i++){
-            if(resultList[i]){
-                return [counter,nextDate];
+        for (let i = 0; i < resultList.length; i++) {
+            if (resultList[i]) {
+                return [counter, nextDate];
             }
         }
         //if it is not a palindrome then get next date and update it
@@ -93,7 +97,7 @@ function getNextPalindromeDate(date){
     }
 }
 
-function reverseDate(date){
+function reverseDate(date) {
     //split every character
     var listOfChars = date.split("");
     //reverse the listofchars
@@ -104,13 +108,13 @@ function reverseDate(date){
     return reversedString;
 }
 
-function isStringPalindrome(date){
+function isStringPalindrome(date) {
     //it will return true or false, whether string is palindrome or not
     var reversedDate = reverseDate(date);
     return date === reversedDate;
 }
 
-function getDateInAllFormats(date){
+function getDateInAllFormats(date) {
     //we will create all possible formats of date, and send them in list
 
     var ddmmyyyy = date.day + date.month + date.year;
@@ -124,15 +128,15 @@ function getDateInAllFormats(date){
 
 }
 
-function checkPalindrome(date){
+function checkPalindrome(date) {
     //before checking palindrome, we will fetch date in all formats, bcz we need to check on all these
     var dateFormatList = getDateInAllFormats(date);
     //for storage
     var palindromList = [];
 
-    for(var i=0;i<dateFormatList.length;i++){
+    for (var i = 0; i < dateFormatList.length; i++) {
         //for each format of date we will check whether date is Palindrome or not
-        var res =  isStringPalindrome(dateFormatList[i]);
+        var res = isStringPalindrome(dateFormatList[i]);
         //push the result into list
         palindromList.push(res);
     }
@@ -140,22 +144,26 @@ function checkPalindrome(date){
 }
 
 //It willl return day,montha and year as a string
-function getDateAsString(date){
-    var dateInString = {day:"", month:"", year:""};
-    
+function getDateAsString(date) {
+    var dateInString = {
+        day: "",
+        month: "",
+        year: ""
+    };
+
     //if day is leass than 10 then have to add 0 in front of them, like 9 -> 09
-    if(date.day < 10){
-        dateInString.day = "0"+date.day;
+    if (date.day < 10) {
+        dateInString.day = "0" + date.day;
     }
     //if day is greater than 10 (like 24) then convert them into string
-    else{
+    else {
         dateInString.day = date.day.toString();
     }
 
     //Now similarly check for month as well, if less than 10 then add 0, else convert into string
-    if(date.month<10){
-        dateInString.month = "0"+date.month;
-    }else{
+    if (date.month < 10) {
+        dateInString.month = "0" + date.month;
+    } else {
         dateInString.day = date.month.toString();
     }
 
@@ -165,11 +173,11 @@ function getDateAsString(date){
     return dateInString;
 }
 
-function checkBday(){
+function checkBday() {
     var bdayString = bdayDate.value;
 
     //check whether string is empty or not
-    if(bdayString !== ""){
+    if (bdayString !== "") {
         //splitting on the basis of -, and taking only numerical vaalues
         var date = bdayString.split("-");
         //storing date, month and year seperately
@@ -192,25 +200,25 @@ function checkBday(){
         //now we will check, if any value of list of checkPalindrome method is true, then we will updtae
         //our var isPalidrome and break, bcz it indicates that yes, given date is Palindrome
         var isPalindrome = false;
-        for(let i=0;i<list.length;i++){
-            if(list[i]){
-                isPalindrome=true;
+        for (let i = 0; i < list.length; i++) {
+            if (list[i]) {
+                isPalindrome = true;
                 break;
             }
         }
 
         //now we will check, what if date is not a palindrome
         //in this case we have return nearest possible value of date which can be a palindrome
-        if(!isPalindrome){
+        if (!isPalindrome) {
             //we will fetch next closest Palindrome Date
-            const [count,nextDate] = getNextPalindromeDate(date);
+            const [count, nextDate] = getNextPalindromeDate(date);
 
             result.innerText = `The next Palindrome Date is ${nextDate.day}-${nextDate.month}-${nextDate.year}, You missed it by ${count} days!`;
-        }else{
+        } else {
             result.innerText = "Yipeee! Yor Birthday is a Palindrome";
         }
     }
 
 }
 
-checkbtn.addEventListener("click",checkBday);
+checkbtn.addEventListener("click", checkBday);

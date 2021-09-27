@@ -23,23 +23,23 @@ main {
     text-align: center;
     margin: 3rem;
     height: 400px;
-    padding:20px;
+    padding: 20px;
     background-color: var(--off-white);
-  }
-  
-  h1 {
+}
+
+h1 {
     font-size: xx-large;
     margin: 2rem;
-  }
+}
 
 
-  .input-label {
+.input-label {
     display: block;
     font-size: large;
     font-weight: 600;
-  }
-  
-  .input-date {
+}
+
+.input-date {
     font-size: 14px;
     outline: #fff;
     padding: 0.6rem 1rem;
@@ -48,9 +48,9 @@ main {
     border-radius: 0.5rem;
     width: 100%;
     max-width: 258px;
-  }
+}
 
-  #check-btn {
+#check-btn {
     background: var(--primary-color);
     border: none;
     color: #fff;
@@ -61,9 +61,9 @@ main {
     outline: #fff;
     margin: auto;
     display: block;
-  }
-  
-  .output {
+}
+
+.output {
     font-size: x-large;
     margin: 2rem 0;
-  }
+}
