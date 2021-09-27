@@ -26,6 +26,9 @@ function getNextDate(date){
     var month = date.month;
     var year = date.year;
 
+    //created a list where we added no of days in each month, for further calculation
+    var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
     //but what if, it is last date of the month, then month will change
     //what if it is febuary, and there is leap year 
     //what if it is last day of year, so year also increases
@@ -34,9 +37,36 @@ function getNextDate(date){
     if(month === 2){
         //now if it is Leap Year then we have range of 29 days, otherwise 28 days
         if(isLeapYear(year)){
-
+            if(day>29){
+                day=1;
+                month=3;
+            }
+        }
+        //if is is not a leap year, then it will have range of 28 days
+        else{
+            if(day>28){
+                day=1;
+                month=3;
+            }
         }
     } 
+    //for rest of the months
+    else{
+        //due to index value we are doing -1
+        if(day>daysInMonth[month-1]){
+            day=1;
+            month++;
+        }
+    }
+
+    //now we will go for year, if month>12, them it would be next year
+    if(month>12){
+        month=1;
+        year++;
+    }
+
+    //now return the next(calculated) date
+    return {day:day, month:month, year:year};
 }
 
 function getNextPalindromeDate(date){
