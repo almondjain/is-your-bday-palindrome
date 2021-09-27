@@ -42,7 +42,10 @@ function checkPalindrome(date){
     for(var i=0;i<dateFormatList.length;i++){
         //for each format of date we will check whether date is Palindrome or not
         var res =  isStringPalindrome(dateFormatList[i]);
+        //push the result into list
+        palindromList.push(res);
     }
+    return palindromList;
 }
 
 //It willl return day,montha and year as a string
