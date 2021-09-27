@@ -90,13 +90,26 @@ function checkBday(){
         var date = {
             day: Number(dd),
             month: Number(mm),
-            year: Number(yy);
+            year: Number(yy)
         };
 
         //collect day,month and year as single string
         var dateString = getDateAsString(date);
         //now check Palindrome for the date
         var list = checkPalindrome(dateString);
+
+        //now we will check, if any value of list of checkPalindrome method is true, then we will updtae
+        //our var isPalidrome and break, bcz it indicates that yes, given date is Palindrome
+        var isPalindrome = false;
+        for(let i=0;i<list.length;i++){
+            if(list[i]){
+                isPalindrome=true;
+                break;
+            }
+        }
+
+        //now we will check, what if date is not a palindrome
+        //in this case we have return nearest possible value of date which can be a palindrome
 
     }
 
