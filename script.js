@@ -2,6 +2,49 @@ var bdayDate = document.querySelector("#bday-input");
 var checkbtn = document.querySelector("#check-btn");
 var result = document.querySelector(".output");
 
+function isLeapYear(year){
+    //check whether year is leap year or not
+    if(year%400 === 0){
+        return true;
+    }
+
+    if(year%100 === 0){
+        return false;
+    }
+
+    if(year%4 === 0){
+        return true;
+    }
+
+    return false;
+}
+
+function getNextDate(date){
+    //normally, we will add 1 to the date, for the next date
+    var day = date.day +1;
+    //month and year doesnot incement on next day
+    var month = date.month;
+    var year = date.year;
+
+    //but what if, it is last date of the month, then month will change
+    //what if it is febuary, and there is leap year 
+    //what if it is last day of year, so year also increases
+
+    //if month is febuary
+    if(month === 2){
+        //now if it is Leap Year then we have range of 29 days, otherwise 28 days
+        if(isLeapYear(year)){
+
+        }
+    } 
+}
+
+function getNextPalindromeDate(date){
+    //we will check on every next date, so fetch next date
+    var nextDate = getNextDate(date);
+
+}
+
 function reverseDate(date){
     //split every character
     var listOfChars = str.split("");
@@ -110,7 +153,10 @@ function checkBday(){
 
         //now we will check, what if date is not a palindrome
         //in this case we have return nearest possible value of date which can be a palindrome
-
+        if(!isPalindrome){
+            //we will fetch next closest Palindrome Date
+            const [count1,nextDate] = getNextPalindromeDate(date);
+        }
     }
 
 }
