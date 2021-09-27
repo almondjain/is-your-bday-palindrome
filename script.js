@@ -2,9 +2,25 @@ var bdayDate = document.querySelector("#bday-input");
 var checkbtn = document.querySelector("#check-btn");
 var result = document.querySelector(".output");
 
+function reverseDate(date){
+    //split every character
+    var listOfChars = str.split("");
+    //reverse the listofchars
+    var reversedListofChars = listOfChars.reverse();
+    //now join all the reversed char (reversed list), as it will form a reversed string
+    var reversedString = reversedListofChars.join("");
+    //now return the reversed string
+    return reversedString;
+}
+
+function isStringPalindrome(date){
+    var reversedDate = reverseDate(date);
+
+}
+
 function getDateInAllFormats(date){
     //we will create all possible formats of date, and send them in list
-    
+
     var ddmmyyyy = date.day + date.month + date.year;
     var mmddyyyy = date.month + date.day + date.year;
     var yyyymmdd = date.year + date.month + date.day;
@@ -19,6 +35,13 @@ function getDateInAllFormats(date){
 function checkPalindrome(date){
     //before checking palindrome, we will fetch date in all formats, bcz we need to check on all these
     var dateFormatList = getDateInAllFormats(date);
+    //for storage
+    var palindromList = [];
+
+    for(var i=0;i<dateFormatList.length;i++){
+        //for each format of date we will check whether date is Palindrome or not
+        var res =  isStringPalindrome(dateFormatList[i]);
+    }
 }
 
 //It willl return day,montha and year as a string
