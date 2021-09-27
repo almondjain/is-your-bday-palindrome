@@ -95,7 +95,7 @@ function getNextPalindromeDate(date){
 
 function reverseDate(date){
     //split every character
-    var listOfChars = str.split("");
+    var listOfChars = date.split("");
     //reverse the listofchars
     var reversedListofChars = listOfChars.reverse();
     //now join all the reversed char (reversed list), as it will form a reversed string
@@ -203,7 +203,11 @@ function checkBday(){
         //in this case we have return nearest possible value of date which can be a palindrome
         if(!isPalindrome){
             //we will fetch next closest Palindrome Date
-            const [count1,nextDate] = getNextPalindromeDate(date);
+            const [count,nextDate] = getNextPalindromeDate(date);
+
+            result.innerText = `The next Palindrome Date is ${nextDate.day}-${nextDate.month}-${nextDate.year}, You missed it by ${count} days!`;
+        }else{
+            result.innerText = "Yipeee! Yor Birthday is a Palindrome";
         }
     }
 
